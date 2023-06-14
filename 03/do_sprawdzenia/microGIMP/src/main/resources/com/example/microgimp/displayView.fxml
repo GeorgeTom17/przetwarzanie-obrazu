@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1360.0" stylesheets="application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.microgimp.DisplayController">
+   <opaqueInsets>
+      <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+   </opaqueInsets>
+   <children>
+      <Accordion fx:id="myAccordion" layoutX="1160.0" prefHeight="382.0" prefWidth="200.0">
+        <panes>
+            <TitledPane animated="false" text="saturacja">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="369.0">
+                     <children>
+                        <Slider fx:id="desatSlider" blockIncrement="0.1" layoutX="29.0" layoutY="54.0" majorTickUnit="0.05" max="1.01" min="0.01" showTickMarks="true" value="0.5" />
+                        <Label fx:id="desatSliderVal" layoutX="86.0" layoutY="33.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+          <TitledPane animated="false" text="negatyw">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ToggleButton fx:id="negativeButton" layoutX="66.0" layoutY="53.0" mnemonicParsing="false" onAction="#negative" text="zatwierdź" />
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+          <TitledPane animated="false" text="kontrast">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="201.0">
+                     <children>
+                        <ComboBox fx:id="contrastType" layoutX="25.0" layoutY="18.0" prefWidth="150.0" promptText="RODZAJ KONTRASTU" />
+                        <Slider fx:id="contrastSlider" blockIncrement="0.2" cache="true" layoutX="30.0" layoutY="61.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickMarks="true" />
+                        <Label fx:id="contrastSliderVal" layoutX="86.0" layoutY="78.0" text="Label" />
+                     </children></AnchorPane>
+            </content>
+          </TitledPane>
+            <TitledPane animated="false" text="jasność">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="369.0">
+                     <children>
+                        <Slider fx:id="brightnessSlider" blockIncrement="0.1" layoutX="30.0" layoutY="54.0" majorTickUnit="0.005" max="1.0" min="-1.0" showTickMarks="true" />
+                        <Label fx:id="brightnessSliderVal" layoutX="86.0" layoutY="70.0" text="Label" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="suma obrazów">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="369.0">
+                     <children>
+                        <Button fx:id="sumButton" layoutX="39.0" layoutY="53.0" mnemonicParsing="false" onAction="#sumaObr" text="wybierz drugi obraz" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="różnica obrazów">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="369.0">
+                     <children>
+                        <Button fx:id="subtractionButton" layoutX="39.0" layoutY="53.0" mnemonicParsing="false" onAction="#roznObr" text="wybierz drugi obraz" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="iloczyn obrazów">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="60.0" prefWidth="369.0">
+                     <children>
+                        <Button fx:id="productButton" layoutX="39.0" layoutY="53.0" mnemonicParsing="false" onAction="#iloObr" text="wybierz drugi obraz" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </TitledPane>
+            <TitledPane animated="false" text="rozmycie">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="stdBlurButton" layoutX="60.0" layoutY="33.0" mnemonicParsing="false" onAction="#standardBlur" text="jendostajne" />
+                        <Button fx:id="gaussianBlurButton" layoutX="72.0" layoutY="83.0" mnemonicParsing="false" onAction="#gaussianBlur" text="Gaussa" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane animated="false" text="wyostrzanie obrazu">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="sharpenImageButton" layoutX="66.0" layoutY="53.0" mnemonicParsing="false" onAction="#imageSharpening" text="zatwierdź" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+            <TitledPane animated="false" text="filtry">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="sobelButton" layoutX="24.0" layoutY="65.0" mnemonicParsing="false" onAction="#sobelFiltering" text="Sobel" />
+                        <Button fx:id="previtButton" layoutX="135.0" layoutY="65.0" mnemonicParsing="false" onAction="#previtFilter" text="Previt" />
+                        <Button fx:id="robertsButton" layoutX="130.0" layoutY="15.0" mnemonicParsing="false" onAction="#robertsFiltering" text="Roberts" />
+                        <Button fx:id="laplaceButton" layoutX="20.0" layoutY="15.0" mnemonicParsing="false" onAction="#laplaceFiltering" text="Laplace" />
+                        <Button fx:id="logFilterButton" layoutX="80.0" layoutY="115.0" mnemonicParsing="false" onAction="#logFiltering" text="LoG" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
+        </panes>
+      </Accordion>
+      <Button fx:id="applyChanges" layoutX="1248.0" layoutY="686.0" mnemonicParsing="false" onAction="#update" text="zatwierdź zmiany" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a6a6a6" height="337.0" layoutX="954.0" layoutY="383.0" stroke="BLACK" strokeType="INSIDE" width="410.0" />
+      <Button fx:id="loadImgButton" layoutX="1037.0" layoutY="50.0" mnemonicParsing="false" onAction="#loadMainFile" text="wczytaj plik" />
+      <Button fx:id="saveImgButton" layoutX="1040.0" layoutY="84.0" mnemonicParsing="false" onAction="#saveFile" text="zapisz plik" />
+      <CheckBox fx:id="grayHistCheck" layoutX="1022.0" layoutY="679.0" mnemonicParsing="false" onAction="#updateHist" prefHeight="17.0" prefWidth="84.0" text="grayscale" />
+      <CheckBox fx:id="redHistCheck" layoutX="1106.0" layoutY="679.0" mnemonicParsing="false" onAction="#updateHist" prefHeight="17.0" prefWidth="57.0" text="RED" />
+      <CheckBox fx:id="greenHistCheck" layoutX="1162.0" layoutY="679.0" mnemonicParsing="false" onAction="#updateHist" prefHeight="17.0" prefWidth="71.0" text="GREEN" />
+      <CheckBox fx:id="blueHistCheck" layoutX="1233.0" layoutY="679.0" mnemonicParsing="false" onAction="#updateHist" text="BLUE" />
+      <VBox fx:id="histContainer" layoutX="955.0" layoutY="385.0" prefHeight="250.0" prefWidth="400.0">
+         <children>
+            <BarChart fx:id="myHist" animated="false" legendVisible="false" prefHeight="250.0" prefWidth="400.0">
+              <xAxis>
+                <CategoryAxis fx:id="histXAxis" side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="histYAxis" side="LEFT" />
+              </yAxis>
+            </BarChart>
+         </children>
+      </VBox>
+<!--      <VBox fx:id="imageBox" alignment="BASELINE_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="800.0">-->
+<!--         <children>-->
+            <ImageView fx:id="displayedImage" fitHeight="700.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+      </ImageView>
+<!--         </children>-->
+<!--      </VBox>-->
+      <Button fx:id="revertChanges" layoutX="1033.0" layoutY="16.0" mnemonicParsing="false" onAction="#rollbackChanges" text="cofnij zmiany" />
+      <Button fx:id="stretchingButton" layoutX="1086.0" layoutY="639.0" mnemonicParsing="false" onAction="#stretchHistogram" text="rozciągnij" />
+      <Button fx:id="equalizationButton" layoutX="1169.0" layoutY="639.0" mnemonicParsing="false" onAction="#equalizeHistogram" text="wyrównaj" />
+   </children>
+</AnchorPane>
