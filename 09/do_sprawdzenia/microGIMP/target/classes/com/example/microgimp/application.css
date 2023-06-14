@@ -1,0 +1,180 @@
+.root{
+    -fx-background-color: #6A6C6E;
+}
+
+.button{
+    -fx-background-color: #6e9cff;
+}
+
+.button:hover{
+    -fx-background-color: #4580ff;
+}
+
+.toggle-button{
+    -fx-background-color: #6e9cff;
+}
+
+.toggle-button:hover{
+    -fx-background-color: #4580ff;
+}
+
+.menu-item:hover{
+    -fx-background-color: #6A6C6E;
+}
+
+.menu-item{
+    -fx-background-color: #a6a6a6;
+}
+
+.menu{
+    -fx-background-color: #a6a6a6;
+}
+
+.menu:hover{
+    -fx-background-color: #6A6C6E;
+}
+
+.slider .thumb{
+    -fx-background-color: #304470;
+}
+
+.slider .track{
+    -fx-background-color: #6e9cff;
+}
+
+.label{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.check-box{
+    -fx-text-fill: #6A6C6E;
+    -fx-font-weight: bold;
+}
+
+.check-box .box:hover{
+    -fx-background-color: #6A6C6E;
+    -fx-border-color:#6A6C6E;
+}
+
+#grayHistCheck .box:hover{
+    -fx-background-color: #333333;
+    -fx-border-color:#333333;
+}
+
+#redHistCheck .box:hover{
+    -fx-background-color: #640000;
+    -fx-border-color:#640000;
+}
+
+#greenHistCheck .box:hover{
+    -fx-background-color: #006400;
+    -fx-border-color:#006400;
+}
+
+#blueHistCheck .box:hover{
+    -fx-background-color: #000064;
+    -fx-border-color: #000064;
+}
+
+#grayHistCheck:selected .box{
+    -fx-background-color: #6A6C6E;
+}
+
+#redHistCheck:selected .box{
+    -fx-background-color: red;
+}
+
+#greenHistCheck:selected .box{
+    -fx-background-color: green;
+}
+
+#blueHistCheck:selected .box{
+    -fx-background-color: blue;
+}
+
+
+.check-box .box {
+    -fx-background-color: #c9c9c9;
+    -fx-border-color:#c9c9c9;
+    -fx-border-radius:3px;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #6e9cff;
+}
+
+.chart{
+    -fx-background-color: #a6a6a6;
+}
+
+.combo-box{
+    -fx-background-color: #6e9cff;
+}
+
+.combo-box:hover{
+    -fx-background-color: #4580ff;
+}
+
+.titled-pane{
+    -fx-skin: "com.sun.javafx.scene.control.skin.TitledPaneSkin";
+}
+.titled-pane:focused{
+    -fx-text-fill: white;
+}
+
+.titled-pane > .title{
+    -fx-background-insets: 0, 1, 2;
+    -fx-background-radius: 5 5 0 0, 4 4 0 0, 3 3 0 0;
+    -fx-padding: 0.166667em 0.833333em 0.25em 0.833333em; /* 2 10 3 10 */
+    -fx-background-color: #6e9cff;
+}
+
+.titled-pane:hover > .title{
+    -fx-background-color: #4580ff;
+}
+
+.titled-pane:focused > .title{
+    -fx-background-color: #4580ff;
+}
+
+.titled-pane > .title > .arrow-button{
+    -fx-background-color: null;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0.0em 0.25em 0.0em 0.0em;
+}
+
+.titled-pane > .title > .arrow-button .arrow{
+    -fx-background-color: #6A6C6E;
+    -fx-padding: 0.25em 0.3125em 0.25em 0.3125em;
+    -fx-shape: "M 0 0 h 7 l -3.5 4 z";
+}
+
+.titled-pane:collapsed > .title > .arrow-button .arrow{
+    -fx-rotate: -90;
+}
+
+.titled-pane > *.content{
+    -fx-background-insets: 0, 0 1 1 1;
+    -fx-background-color: #c9c9c9;
+    -fx-padding: 0.167em;
+}
+
+.titled-pane:focused > .title > .arrow-button .arrow{
+    -fx-background-color: black;
+}
+
+#gaussianBlurButton{
+    -fx-background-color: #a6a6a6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+#gaussianBlurButton:hover{
+    -fx-background-color: #6A6C6E;
+}
