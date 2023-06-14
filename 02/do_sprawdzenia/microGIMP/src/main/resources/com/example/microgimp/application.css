@@ -1,0 +1,63 @@
+.root{
+    -fx-background-color: #696969;
+}
+
+.button{
+    -fx-background-color: #6e9cff;
+}
+
+.button:hover{
+    -fx-background-color: #4580ff;
+}
+
+.combo-box{
+    -fx-background-color: #c9c9c9;
+}
+
+.combo-box:hover{
+    -fx-background-color: #a6a6a6;
+}
+
+.slider .axis {
+    -fx-tick-label-fill: white;
+}
+
+.label{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.check-box{
+    -fx-text-fill: white;
+}
+
+.check-box .box:hover{
+    -fx-background-color: #a6a6a6;
+    -fx-border-color:#a6a6a6;
+}
+
+.check-box .box {
+    -fx-background-color: #c9c9c9;
+    -fx-border-color:#c9c9c9;
+    -fx-border-radius:3px;
+}
+
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+
+.check-box:selected .box {
+    -fx-background-color: #6e9cff;
+}
+
+
+#welcomeText{
+    -fx-alignment: center;
+    -fx-font-size: 30;
+    -fx-font-family: Impact;
+    -fx-text-fill: "white";
+}
+
+#title{
+    -fx-background-color: #4580ff;
+}
