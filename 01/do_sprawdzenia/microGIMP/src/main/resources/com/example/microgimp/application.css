@@ -1,0 +1,30 @@
+.root{
+    -fx-background-color: #696969;
+}
+
+.button{
+    -fx-background-color: #6e9cff;
+}
+
+.button:hover{
+    -fx-background-color: #4580ff;
+}
+
+.combo-box{
+    -fx-background-color: #c9c9c9;
+}
+
+.combo-box:hover{
+    -fx-background-color: #a6a6a6;
+}
+
+#welcomeText{
+    -fx-alignment: center;
+    -fx-font-size: 30;
+    -fx-font-family: Impact;
+    -fx-text-fill: "white";
+}
+
+#title{
+    -fx-background-color: #4580ff;
+}
