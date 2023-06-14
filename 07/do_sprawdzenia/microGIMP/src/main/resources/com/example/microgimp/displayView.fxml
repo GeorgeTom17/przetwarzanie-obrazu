@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1360.0" stylesheets="application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.microgimp.DisplayController">
+    <opaqueInsets>
+        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+    </opaqueInsets>
+    <Accordion fx:id="myAccordion" layoutX="1160.0" prefHeight="382.0" prefWidth="200.0" />
+    <Button fx:id="applyChanges" layoutX="1248.0" layoutY="686.0" mnemonicParsing="false" onAction="#update" text="zatwierdź zmiany" />
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a6a6a6" height="337.0" layoutX="954.0" layoutY="383.0" stroke="BLACK" strokeType="INSIDE" width="410.0" />
+    <CheckBox fx:id="grayHistCheck" layoutX="1022.0" layoutY="679.0" mnemonicParsing="false" onAction="#updateHist" prefHeight="17.0" prefWidth="84.0" text="grayscale" />
+    <CheckBox fx:id="redHistCheck" layoutX="1106.0" layoutY="679.0" mnemonicParsing="false" onAction="#updateHist" prefHeight="17.0" prefWidth="57.0" text="RED" />
+    <CheckBox fx:id="greenHistCheck" layoutX="1162.0" layoutY="679.0" mnemonicParsing="false" onAction="#updateHist" prefHeight="17.0" prefWidth="71.0" text="GREEN" />
+    <CheckBox fx:id="blueHistCheck" layoutX="1233.0" layoutY="679.0" mnemonicParsing="false" onAction="#updateHist" text="BLUE" />
+    <VBox fx:id="histContainer" layoutX="955.0" layoutY="385.0" prefHeight="250.0" prefWidth="400.0">
+        <BarChart fx:id="myHist" animated="false" legendVisible="false" prefHeight="250.0" prefWidth="400.0">
+            <xAxis>
+                <CategoryAxis fx:id="histXAxis" side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis fx:id="histYAxis" side="LEFT" />
+            </yAxis>
+        </BarChart>
+    </VBox>
+    <Button fx:id="stretchingButton" layoutX="1086.0" layoutY="639.0" mnemonicParsing="false" onAction="#stretchHistogram" text="rozciągnij" />
+    <Button fx:id="equalizationButton" layoutX="1169.0" layoutY="639.0" mnemonicParsing="false" onAction="#equalizeHistogram" text="wyrównaj" />
+    <!--      <VBox fx:id="imageBox" alignment="BASELINE_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="800.0">-->
+    <!--         <children>-->
+    <ImageView fx:id="displayedImage" fitHeight="600.0" fitWidth="700.0" layoutX="50.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
+    </ImageView>
+   <MenuBar fx:id="myMenuBar" prefHeight="20.0" prefWidth="1360.0">
+     <menus>
+       <Menu mnemonicParsing="false" text="Plik">
+         <items>
+           <MenuItem mnemonicParsing="false" text="  Wczytaj plik">
+                  <graphic>
+                      <Button fx:id="loadImgButton" alignment="BASELINE_CENTER" mnemonicParsing="false" onAction="#loadMainFile" text="OK" />
+                  </graphic>
+               </MenuItem>
+               <MenuItem mnemonicParsing="false" text="  Zapisz plik">
+                  <graphic>
+                      <Button fx:id="saveImgButton" mnemonicParsing="false" onAction="#saveFile" text="OK" />
+                  </graphic>
+               </MenuItem>
+               <MenuItem mnemonicParsing="false" text="  Cofnij zmiany">
+                  <graphic>
+                      <!--         </children>-->
+                      <!--      </VBox>-->
+                      <Button fx:id="revertChanges" alignment="BASELINE_CENTER" mnemonicParsing="false" onAction="#rollbackChanges" text="OK" />
+                  </graphic>
+               </MenuItem>
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Lab 1">
+         <items>
+               <Menu mnemonicParsing="false" text="Saturacja">
+                  <items>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                              <Slider fx:id="desatSlider" blockIncrement="0.1" majorTickUnit="0.05" max="1.01" min="0.01" showTickMarks="true" value="0.5" />
+                        </graphic>
+                     </MenuItem>
+                  </items>
+                  <graphic>
+                        <Label fx:id="desatSliderVal" />
+                  </graphic>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Negatyw">
+                  <items>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                              <Button fx:id="negativeButton" mnemonicParsing="false" onAction="#negative" text="zatwierdź" />
+                        </graphic>
+                     </MenuItem>
+                  </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Kontrast">
+                  <items>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                              <Slider fx:id="contrastSlider" blockIncrement="0.2" cache="true" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickMarks="true" />
+                        </graphic>
+                     </MenuItem>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                              <ComboBox fx:id="contrastType" prefWidth="150.0" promptText="RODZAJ KONTRASTU" />
+                        </graphic>
+                     </MenuItem>
+                  </items>
+                  <graphic>
+                        <Label fx:id="contrastSliderVal" text="Label" />
+                  </graphic>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Jasność">
+                  <items>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                              <Slider fx:id="brightnessSlider" blockIncrement="0.1" majorTickUnit="0.1" max="1.0" min="-1.0" showTickMarks="true" />
+                        </graphic>
+                     </MenuItem>
+                  </items>
+                  <graphic>
+                        <Label fx:id="brightnessSliderVal" text="Label" />
+                  </graphic>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Suma obrazów">
+                  <items>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                              <Button fx:id="sumButton" mnemonicParsing="false" onAction="#sumaObr" text="wybierz drugi obraz" />
+                        </graphic>
+                     </MenuItem>
+                  </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Różnica obrazów">
+                  <items>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                              <Button fx:id="subtractionButton" mnemonicParsing="false" onAction="#roznObr" text="wybierz drugi obraz" />
+                        </graphic>
+                     </MenuItem>
+                  </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Iloczyn obrazów">
+                  <items>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                              <Button fx:id="productButton" mnemonicParsing="false" onAction="#iloObr" text="wybierz drugi obraz" />
+                        </graphic>
+                     </MenuItem>
+                  </items>
+               </Menu>
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Lab 4">
+            <items>
+               <Menu mnemonicParsing="false" text="Rozmycie">
+                 <items>
+                   <MenuItem mnemonicParsing="false">
+                        <graphic>
+                              <Button fx:id="stdBlurButton" mnemonicParsing="false" onAction="#standardBlur" text="jednostajne" />
+                        </graphic>
+                     </MenuItem>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                              <Button fx:id="gaussianBlurButton" mnemonicParsing="false" onAction="#gaussianBlur" text="Gaussa">
+                              <graphic>
+                                    <Label fx:id="gaussSliderVal" text="10">
+                                    <graphic>
+                                          <Slider fx:id="gaussSlider" blockIncrement="0.2" cache="true" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" showTickMarks="true" />
+                                    </graphic>
+                                 </Label>
+                              </graphic></Button>
+                        </graphic>
+                     </MenuItem>
+                 </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Wyostrzanie obrazu">
+                  <items>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                              <Button fx:id="sharpenImageButton" mnemonicParsing="false" onAction="#imageSharpening" text="zatwierdź" />
+                        </graphic>
+                     </MenuItem>
+                  </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Filtry">
+                  <items>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                              <Button fx:id="laplaceButton" mnemonicParsing="false" onAction="#laplaceFiltering" text="Laplace" />
+                        </graphic>
+                     </MenuItem>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                              <Button fx:id="sobelButton" mnemonicParsing="false" onAction="#sobelFiltering" text="Sobel" />
+                        </graphic>
+                     </MenuItem>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                              <Button fx:id="robertsButton" mnemonicParsing="false" onAction="#robertsFiltering" text="Roberts" />
+                        </graphic>
+                     </MenuItem>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                              <Button fx:id="prewittButton" mnemonicParsing="false" onAction="#prewittFiltering" text="Prewitt" />
+                        </graphic>
+                     </MenuItem>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                              <Button fx:id="laplacianOfGaussianFilterButton" mnemonicParsing="false" onAction="#laplacianOfGaussianFiltering" text="LoG" />
+                        </graphic>
+                     </MenuItem>
+                  </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Skalowanie obrazu">
+                  <items>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                           <Label text="Nowa wysokość">
+                              <graphic>
+                                 <TextField fx:id="scaleHeight" prefHeight="26.0" prefWidth="94.0" />
+                              </graphic>
+                           </Label>
+                        </graphic>
+                     </MenuItem>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                           <Label text="Nowa szerokość">
+                              <graphic>
+                                 <TextField fx:id="scaleWidth" prefHeight="26.0" prefWidth="94.0" />
+                              </graphic>
+                           </Label>
+                        </graphic>
+                     </MenuItem>
+                     <MenuItem mnemonicParsing="false">
+                        <graphic>
+                           <Button fx:id="rescaleImage" mnemonicParsing="false" onAction="#rescaleImage" text="Zmień" />
+                        </graphic>
+                     </MenuItem>
+                  </items>
+               </Menu>
+            </items>
+       </Menu>
+         <Menu mnemonicParsing="false" text="Lab 5">
+            <items>
+                   <MenuItem mnemonicParsing="false" text="Otsu">
+                        <graphic>
+                           <Button fx:id="otsuButton" mnemonicParsing="false" onAction="#binaryOtsu" text="Zatwierdź" />
+                        </graphic>
+                     </MenuItem>
+                     <MenuItem mnemonicParsing="false" text="KWS">
+                        <graphic>
+                           <Button fx:id="kswButton" mnemonicParsing="false" onAction="#binaryKSW" text="Zatwierdź" />
+                        </graphic>
+                     </MenuItem>
+                     <MenuItem mnemonicParsing="false" text="RC">
+                        <graphic>
+                           <Button fx:id="rcButton" mnemonicParsing="false" onAction="#binaryRC" text="Zatwierdź" />
+                        </graphic>
+                     </MenuItem>
+                     <MenuItem mnemonicParsing="false" text="Ręcznie">
+                        <graphic>
+                           <Slider fx:id="binarySlider" blockIncrement="0.01" majorTickUnit="0.1" max="1.0" minorTickCount="5" snapToTicks="true" value="0.5" />
+                        </graphic>
+                     </MenuItem>
+            </items>
+         </Menu>
+         <Menu mnemonicParsing="false" text="Lab 6">
+            <items>
+               <MenuItem mnemonicParsing="false" text="Sigma (Gauss)">
+                  <graphic>
+                     <Label fx:id="cannyGaussSigmaVal" text="Label">
+                        <graphic>
+                           <Slider fx:id="cannyGaussSigma" blockIncrement="0.01" majorTickUnit="0.1" max="10.0" min="1.0" minorTickCount="1" value="0.5" />
+                        </graphic>
+                     </Label>
+                  </graphic>
+               </MenuItem>
+               <MenuItem mnemonicParsing="false" text="Próg dolny">
+                  <graphic>
+                     <Label fx:id="cannyLowerThresholdVal" text="Label">
+                        <graphic>
+                           <Slider fx:id="cannyLowerThreshold" blockIncrement="0.01" majorTickUnit="0.1" minorTickCount="1" value="0.2" />
+                        </graphic>
+                     </Label>
+                  </graphic>
+               </MenuItem>
+               <MenuItem mnemonicParsing="false" text="Próg górny">
+                  <graphic>
+                     <Label fx:id="cannyUpperThresholdVal" text="Label">
+                        <graphic>
+                           <Slider fx:id="cannyUpperThreshold" blockIncrement="0.01" majorTickUnit="0.1" minorTickCount="1" value="0.5" />
+                        </graphic>
+                     </Label>
+                  </graphic>
+               </MenuItem>
+               <MenuItem mnemonicParsing="false" text="Zastosuj zmiany">
+                  <graphic>
+                     <Button fx:id="cannyButton" mnemonicParsing="false" onAction="#cannyEdgeDetection" text="OK" />
+                  </graphic>
+               </MenuItem>
+            </items>
+         </Menu>
+         <Menu mnemonicParsing="false" text="Lab 7">
+           <items>
+             <MenuItem mnemonicParsing="false" text="Pokaż przestrzeń Hougha">
+                  <graphic>
+                     <CheckBox fx:id="showHoughResults" mnemonicParsing="false" />
+                  </graphic>
+               </MenuItem>
+               <MenuItem mnemonicParsing="false" text="Próg">
+                  <graphic>
+                     <Label fx:id="houghSliderVal" text="Label">
+                        <graphic>
+                           <Slider fx:id="houghSlider" min="2" max="1000" />
+                        </graphic>
+                     </Label>
+                  </graphic>
+               </MenuItem>
+               <MenuItem mnemonicParsing="false">
+                  <graphic>
+                     <Button mnemonicParsing="false" onAction="#houghTransform" text="OK" />
+                  </graphic>
+               </MenuItem>
+           </items>
+         </Menu>
+     </menus>
+   </MenuBar>
+</AnchorPane>
